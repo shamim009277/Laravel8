@@ -12,4 +12,14 @@ class PostController extends Controller
         $posts = Post::paginate(5);
         return view('posts',compact('posts'));
     }
+
+    public function showForm(){
+
+    	return view('upload');
+    }
+
+    public function uploadFile(Request $request){
+    	$request->file->store('public');
+    	return "File Uploaded Successfully";
+    }
 }

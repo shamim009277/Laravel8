@@ -24,3 +24,6 @@ Route::get('/payment',function(){
      return Payment::process();
 });
 Route::get('/send_mail',[MailController::class,'MailSend'])->name('mail.MailSend');
+
+Route::get('/upload',[PostController::class,'showForm'])->name('upload.showForm');
+Route::post('/upload',[PostController::class,'uploadFile'])->name('upload.uploadFile');
