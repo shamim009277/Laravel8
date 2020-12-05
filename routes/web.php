@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\PaymentGateway\Payment;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/post',[PostController::class,'showpost'])->name('post.showpost');
+Route::get('/payment',function(){
+     return Payment::process();
+});
