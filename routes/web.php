@@ -38,3 +38,6 @@ Route::get('/employee',[PostController::class,'addEmployee']);
 
 Route::get('/export_excel',[PostController::class,'exportIntoExcel'])->name('export.excel');
 Route::get('/export_csv',[PostController::class,'exportIntoCsv'])->name('export.csv');
+
+Route::get('/employee-list',[PostController::class,'showEmployee']);
+Route::get('/pdf',[PostController::class,'generatePDF']);

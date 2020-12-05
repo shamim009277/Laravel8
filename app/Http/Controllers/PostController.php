@@ -7,6 +7,7 @@ use App\Exports\EmployeeExport;
 use App\Models\Post;
 use App\Models\Employee;
 use Excel;
+use PDF;
 
 class PostController extends Controller
 {
@@ -47,5 +48,17 @@ class PostController extends Controller
     public function exportIntoCsv(){
 
     	return Excel::download(new EmployeeExport,'employee.csv');
+    }
+
+    public function showEmployee(){
+        $employees = Employee::all();
+       return view('pdf',compact('employees'));
+    }
+
+    public function generatePDF(){
+        $employees = Employee::all();
+        $pdf = PDF::loadView('pdf',compact('employees'));
+       //return view('pdf',compact('employees','data'));
+        return $pdf->download('employee.pdf');
     }
 }
