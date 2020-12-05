@@ -27,3 +27,14 @@ Route::get('/send_mail',[MailController::class,'MailSend'])->name('mail.MailSend
 
 Route::get('/upload',[PostController::class,'showForm'])->name('upload.showForm');
 Route::post('/upload',[PostController::class,'uploadFile'])->name('upload.uploadFile');
+
+/* 
+Install Maatwebsite Excell then add providers and alices then publish 
+php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" 
+
+*/
+
+Route::get('/employee',[PostController::class,'addEmployee']);
+
+Route::get('/export_excel',[PostController::class,'exportIntoExcel'])->name('export.excel');
+Route::get('/export_csv',[PostController::class,'exportIntoCsv'])->name('export.csv');
