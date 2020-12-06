@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Exports\EmployeeExport;
+use App\Imports\EmployeeImport;
 use App\Models\Post;
 use App\Models\Employee;
 use Excel;
@@ -41,12 +42,10 @@ class PostController extends Controller
     }
 
     public function exportIntoExcel(){
-
     	return Excel::download(new EmployeeExport, 'employee.xlsx');
     }
 
     public function exportIntoCsv(){
-
     	return Excel::download(new EmployeeExport,'employee.csv');
     }
 
@@ -60,5 +59,14 @@ class PostController extends Controller
         $pdf = PDF::loadView('pdf',compact('employees'));
        //return view('pdf',compact('employees','data'));
         return $pdf->download('employee.pdf');
+    }
+
+    public function inportForm(){
+    	return view('import_form');
+    }
+
+    public function importIntoExcel(Request $request){
+        Excel::import(new EmployeeImport,$request->file);
+        return "Data Imported successfully";
     }
 }

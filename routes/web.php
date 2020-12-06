@@ -41,3 +41,6 @@ Route::get('/export_csv',[PostController::class,'exportIntoCsv'])->name('export.
 
 Route::get('/employee-list',[PostController::class,'showEmployee']);
 Route::get('/pdf',[PostController::class,'generatePDF']);
+
+Route::get('/inport-form',[PostController::class,'inportForm']);
+Route::post('/import',[PostController::class,'importIntoExcel'])->name('import.excel');
