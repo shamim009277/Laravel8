@@ -47,3 +47,6 @@ Route::post('/import',[PostController::class,'importIntoExcel'])->name('import.e
 
 Route::get('/image',[PostController::class,'imageForm']);
 Route::post('/resize_image',[PostController::class,'imageResize'])->name('image.resize');
+
+Route::get('/dropzone',[PostController::class,'dropzone']);
+Route::post('/image_dropzone',[PostController::class,'dropzoneStore'])->name('store.dropzone');

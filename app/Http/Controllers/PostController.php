@@ -93,6 +93,20 @@ class PostController extends Controller
         return back()
                 ->with('success','Image Uploaded Successfully')
                 ->with('imageName',$imageName);
+    }
 
+    public function dropzone(){
+    	return view('dropzone');
+    }
+
+    public function dropzoneStore(Request $request){
+        
+        $image = $request->file('file');
+        $imageName = time().'.'.$image->extension();
+
+        $destinationPath = public_path('/images');
+        $image->move($destinationPath, $imageName);
+
+        return response()->json(['success'=>$imageName]);
     }
 }
