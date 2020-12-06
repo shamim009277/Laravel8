@@ -44,3 +44,6 @@ Route::get('/pdf',[PostController::class,'generatePDF']);
 
 Route::get('/inport-form',[PostController::class,'inportForm']);
 Route::post('/import',[PostController::class,'importIntoExcel'])->name('import.excel');
+
+Route::get('/image',[PostController::class,'imageForm']);
+Route::post('/resize_image',[PostController::class,'imageResize'])->name('image.resize');

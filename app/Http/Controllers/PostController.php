@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Employee;
 use Excel;
 use PDF;
+use Image;
 
 class PostController extends Controller
 {
@@ -68,5 +69,30 @@ class PostController extends Controller
     public function importIntoExcel(Request $request){
         Excel::import(new EmployeeImport,$request->file);
         return "Data Imported successfully";
+    }
+
+    public function imageForm(){
+    	return view('upload_image');
+    }
+
+    public function imageResize(Request $request){
+         
+        $image = $request->file('file');
+        $imageName = time().'.'.$image->extension();
+         
+
+        $destinationPath = public_path('/thumbnail');
+        $img = Image::make($image->path());
+        $img->resize(100, 100, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($destinationPath.'/'.$imageName);
+   
+        $destinationPath = public_path('/images');
+        $image->move($destinationPath, $imageName);
+
+        return back()
+                ->with('success','Image Uploaded Successfully')
+                ->with('imageName',$imageName);
+
     }
 }
