@@ -109,4 +109,8 @@ class PostController extends Controller
 
         return response()->json(['success'=>$imageName]);
     }
+
+    public function editorShow(){
+    	return view('editor');
+    }
 }

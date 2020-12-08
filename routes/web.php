@@ -50,3 +50,5 @@ Route::post('/resize_image',[PostController::class,'imageResize'])->name('image.
 
 Route::get('/dropzone',[PostController::class,'dropzone']);
 Route::post('/image_dropzone',[PostController::class,'dropzoneStore'])->name('store.dropzone');
+
+Route::get('/editor',[PostController::class,'editorShow']);
